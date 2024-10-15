@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Study Management</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/style_main.css' %}">
+</head>
+<body>
+    <h1>Study Management</h1>
+    <table>
+        <tr>
+            <th>Study Name</th>
+            <th>Study Phase</th>
+            <th>Sponsor Name</th>
+            <th>Study Description</th>
+            <th>Actions</th>
+        </tr>
+        {% for study in studies %}
+        <tr>
+            <td>{{ study.study_name }}</td>
+            <td>{{ study.study_phase }}</td>
+            <td>{{ study.sponsor_name }}</td>
+            <td>{{ study.study_description }}</td>
+            <td>
+                <a href="{% url 'view_study' study.id %}">View</a> | 
+                <a href="{% url 'edit_study' study.id %}">Edit</a> | 
+                <a href="{% url 'delete_study' study.id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'add_study' %}">Add Study</a>
+</body>
+</html>
